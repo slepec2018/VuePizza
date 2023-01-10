@@ -12,7 +12,10 @@
       @drop="$emit('drop', $event)"
     >
       <div class="content__constructor">
-        <div class="pizza pizza--foundation--big-tomato">
+        <div
+          class="pizza"
+          :class="`pizza--foundation--${doughsize}-${optionsauce}`"
+        >
           <div class="pizza__wrapper">
             <PizzaPicIngredient
               v-for="(ingridient, index) of actualIngridients"
@@ -44,6 +47,14 @@ export default {
     },
     actualIngridients: {
       type: Array,
+      required: true
+    },
+    doughsize: {
+      type: String,
+      required: true
+    },
+    optionsauce: {
+      type: String,
       required: true
     }
   }

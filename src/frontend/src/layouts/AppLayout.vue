@@ -11,15 +11,21 @@
       </a>
     </div>
     <div class="header__cart">
-      <a href="cart.html"> 0 ₽ </a>
+      <router-link
+        href="cart.html"
+        to="/cart"
+      >
+        0 ₽
+      </router-link>
     </div>
     <div class="header__user">
-      <a
+      <router-link
         href="#"
         class="header__login"
+        to="/login"
       >
         <span> Войти </span>
-      </a>
+      </router-link>
     </div>
   </header>
 </template>

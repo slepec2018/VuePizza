@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view />
     <AppLayoutHeader />
 
     <main class="content">
@@ -29,6 +30,8 @@
           <PizzaView
             :total-price="getFinishPrice"
             :actual-ingridients="addOptionPrice.ingridients"
+            :doughsize="getActualSauce"
+            :optionsauce="addOptionPrice.sauce"
             @drop="dropRefreshActiveIngridients"
           />
         </div>
@@ -90,6 +93,19 @@ export default {
       }
 
       return total;
+    },
+    getActualSauce() {
+      let result = 'small';
+
+      if (this.addOptionPrice.dough === 'light') {
+        result = 'small';
+      }
+
+      if (this.addOptionPrice.dough === 'large') {
+        result = 'big';
+      }
+
+      return result;
     }
   },
   methods: {
