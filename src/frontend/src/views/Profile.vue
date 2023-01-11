@@ -14,17 +14,17 @@
       </a>
 
       <a
+        to="/profile/orders"
         class="layout__link"
-        href="#"
       >
         История заказов
       </a>
-      <a
+      <router-link
+        to="/profile/orders"
         class="layout__link layout__link--active"
-        href="#"
       >
         Мои данные
-      </a>
+      </router-link>
     </div>
 
     <div class="layout__content">

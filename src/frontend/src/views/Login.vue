@@ -46,7 +46,12 @@
         type="submit"
         class="button"
       >
-        Авторизоваться
+        <router-link
+          href="#"
+          to="/profile"
+        >
+          Авторизоваться
+        </router-link>
       </button>
     </form>
   </div>

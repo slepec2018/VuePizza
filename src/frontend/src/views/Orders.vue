@@ -13,12 +13,12 @@
         />
       </a>
 
-      <a
+      <router-link
+        to="/profile"
         class="layout__link layout__link--active"
-        href="#"
       >
         История заказов
-      </a>
+      </router-link>
       <a
         class="layout__link"
         href="#"

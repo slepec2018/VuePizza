@@ -1,43 +1,38 @@
 <template>
-  <div>
-    <router-view />
-    <AppLayoutHeader />
-
-    <main class="content">
-      <form
-        action="#"
-        method="post"
-      >
-        <div class="content__wrapper">
-          <h1 class="title title--big">
-            Конструктор пиццы
-          </h1>
-          <DoughSelector
-            :dough="pizza.dough"
-            @сhangePrice="changeOptionPrice"
-          />
-          <SizeSelector
-            :sizes="pizza.sizes"
-          />
-          <IngredientsSelector
-            :sauces="pizza.sauces"
-            :ingredients="pizza.ingredients"
-            :dataorder="addOptionPrice.ingridients"
-            @сhangePrice="changeOptionPrice"
-            @ing-min="refreshActiveIngridients"
-            @ing-max="refreshActiveIngridients"
-          />
-          <PizzaView
-            :total-price="getFinishPrice"
-            :actual-ingridients="addOptionPrice.ingridients"
-            :doughsize="getActualSauce"
-            :optionsauce="addOptionPrice.sauce"
-            @drop="dropRefreshActiveIngridients"
-          />
-        </div>
-      </form>
-    </main>
-  </div>
+  <main class="content">
+    <form
+      action="#"
+      method="post"
+    >
+      <div class="content__wrapper">
+        <h1 class="title title--big">
+          Конструктор пиццы
+        </h1>
+        <DoughSelector
+          :dough="pizza.dough"
+          @сhangePrice="changeOptionPrice"
+        />
+        <SizeSelector
+          :sizes="pizza.sizes"
+        />
+        <IngredientsSelector
+          :sauces="pizza.sauces"
+          :ingredients="pizza.ingredients"
+          :dataorder="addOptionPrice.ingridients"
+          @сhangePrice="changeOptionPrice"
+          @ing-min="refreshActiveIngridients"
+          @ing-max="refreshActiveIngridients"
+        />
+        <PizzaView
+          :total-price="getFinishPrice"
+          :actual-ingridients="addOptionPrice.ingridients"
+          :doughsize="getActualSauce"
+          :optionsauce="addOptionPrice.sauce"
+          @drop="dropRefreshActiveIngridients"
+        />
+      </div>
+    </form>
+  </main>
 </template>
 <script>
 import pizza from '@/static/pizza.json';
@@ -51,7 +46,6 @@ import PizzaView from '@/modules/builder/components/BuilderPizzaView.vue';
 export default {
   name: 'Index',
   components: {
-    AppLayoutHeader,
     DoughSelector,
     SizeSelector,
     IngredientsSelector,
