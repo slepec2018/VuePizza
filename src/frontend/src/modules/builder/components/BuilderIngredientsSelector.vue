@@ -18,7 +18,6 @@
               :value="sauce.nameEng"
               :radio-name="radioName"
               :checked="index === 0"
-              @сhangePrice="$emit('сhangePrice', $event)"
             />
             <span>
               {{ sauce.name }}
@@ -43,8 +42,6 @@
               <ItemCounter
                 :name="ingredient.nameEng"
                 :dataorder="dataorder"
-                @ing-min="$emit('ing-min', $event)"
-                @ing-max="$emit('ing-max', $event)"
               />
             </li>
           </ul>

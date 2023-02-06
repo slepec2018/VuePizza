@@ -16,7 +16,6 @@
             :value="item.nameEng"
             :radio-name="radioName"
             :checked="index === 0"
-            @сhangePrice="$emit('сhangePrice', $event)"
           />
           <b>
             {{ item.name }}

@@ -3,7 +3,7 @@
     <button
       type="button"
       class="counter__button counter__button--disabled counter__button--minus"
-      @click="$emit('ing-min', {count: - 1, ing: name})"
+      @click="refreshActiveIngridients({count: - 1, ing: name})"
     >
       <span class="visually-hidden"> Меньше </span>
     </button>
@@ -11,12 +11,12 @@
       type="text"
       name="counter"
       class="counter__input"
-      :value="actualizationValue"
+      :value="actualizationValueItemCounter(name)"
     />
     <button
       type="button"
       class="counter__button counter__button--plus"
-      @click="$emit('ing-max', {count: 1, ing: name })"
+      @click="refreshActiveIngridients({count: 1, ing: name })"
     >
       <span class="visually-hidden"> Больше </span>
     </button>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
   name: 'ItemCounter',
   props: {
@@ -36,21 +38,12 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      counter: 0
-    };
-  },
+
   computed: {
-    actualizationValue() {
-      const findIng = this.dataorder.findIndex(element => element.name === this.name);
-
-      if (findIng === -1) {
-        return 0;
-      }
-
-      return this.dataorder[findIng].count;
-    }
+    ...mapGetters('Builder', ['actualizationValueItemCounter'])
+  },
+  methods: {
+    ...mapMutations('Builder', ['refreshActiveIngridients'])
   }
 };
 </script>

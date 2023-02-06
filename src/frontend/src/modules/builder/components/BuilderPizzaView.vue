@@ -6,19 +6,19 @@
         type="text"
         name="pizza_name"
         placeholder="Введите название пиццы"
+        :value="order.pizzaTitle"
+        @change="changePizzaTitle($event.target.value)"
       />
     </label>
-    <AppDrop
-      @drop="$emit('drop', $event)"
-    >
+    <AppDrop>
       <div class="content__constructor">
         <div
           class="pizza"
-          :class="`pizza--foundation--${doughsize}-${optionsauce}`"
+          :class="`pizza--foundation--${getActualSauce}-${order.sauce}`"
         >
           <div class="pizza__wrapper">
             <PizzaPicIngredient
-              v-for="(ingridient, index) of actualIngridients"
+              v-for="(ingridient, index) of order.ingridients"
               :key="index"
               :name="ingridient.name"
             />
@@ -26,9 +26,7 @@
         </div>
       </div>
     </AppDrop>
-    <PriceCounter
-      :total-price="totalPrice"
-    />
+    <PriceCounter />
   </div>
 </template>
 
@@ -37,26 +35,17 @@ import PriceCounter from '@/modules/builder/components/BuilderPriceCounter.vue';
 import AppDrop from '@/common/components/AppDrop.vue';
 import PizzaPicIngredient from '@/common/components/PizzaPicIngred.vue';
 
+import { mapState, mapGetters, mapMutations } from 'vuex';
+
 export default {
   name: 'PizzaView',
   components: { PriceCounter, AppDrop, PizzaPicIngredient },
-  props: {
-    totalPrice: {
-      type: Number,
-      required: true
-    },
-    actualIngridients: {
-      type: Array,
-      required: true
-    },
-    doughsize: {
-      type: String,
-      required: true
-    },
-    optionsauce: {
-      type: String,
-      required: true
-    }
+  computed: {
+    ...mapState('Builder', ['order']),
+    ...mapGetters('Builder', ['getActualSauce'])
+  },
+  methods: {
+    ...mapMutations('Builder', ['changePizzaTitle'])
   }
 };
 </script>

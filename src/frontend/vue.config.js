@@ -15,7 +15,7 @@ module.exports = {
         pathRewrite: { '^/api/': '/' }
       },
       '^/public': {
-        target: 'http://backend:3000/',
+        target: 'http://localhost:8080/',
         changeOrigin: false,
         pathRewrite: { '^/public/': '/public/' }
       },

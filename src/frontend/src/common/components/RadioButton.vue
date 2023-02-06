@@ -5,11 +5,13 @@
     :value="value"
     :checked="checked"
     class="visually-hidden"
-    @change="$emit('сhangePrice', { value: $event.target.value, name: radioName })"
+    @change="changeOptionPrice( { value: $event.target.value, name: radioName })"
   />
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'RadioButton',
   props: {
@@ -25,6 +27,9 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  methods: {
+    ...mapMutations('Builder', ['changeOptionPrice'])
   }
 };
 </script>

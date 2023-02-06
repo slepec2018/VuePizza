@@ -18,7 +18,7 @@
         href="cart.html"
         to="/cart"
       >
-        0 ₽
+        {{ getFinishOrderCost }} ₽
       </router-link>
     </div>
     <div class="header__user">
@@ -34,8 +34,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: 'AppLayoutHeader'
+  name: 'AppLayoutHeader',
+  computed: {
+    ...mapGetters('Cart',['getFinishOrderCost'])
+  }
 };
 </script>
 

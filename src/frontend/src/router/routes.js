@@ -23,5 +23,10 @@ export default [
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/popup',
+    name: 'Popup',
+    component: () => import('../views/Popup.vue')
   }
 ];

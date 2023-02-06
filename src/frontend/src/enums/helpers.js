@@ -1,4 +1,4 @@
-const normalizeTask = item => {
+const normalizePizza = item => {
   for (const dough of item.dough) {
     if (dough.name === 'Тонкое') {
       dough.nameEng = 'light';
@@ -82,4 +82,92 @@ const normalizeTask = item => {
   return item;
 };
 
-export { normalizeTask };
+const normalizeDataCart = items => {
+  const cloneItems = JSON.parse(JSON.stringify(items));
+
+  for (const item of cloneItems) {
+    if (item.dough === 'light') {
+      item.dough = 'тонком';
+    }
+    if (item.dough === 'large') {
+      item.dough = 'толстом';
+    }
+
+    if (item.sauce === 'tomato') {
+      item.sauce = 'томатный';
+    }
+    if (item.sauce === 'creamy') {
+      item.sauce = 'сливочный';
+    }
+
+    if (item.diameter === 'small') {
+      item.diameter = '23';
+    }
+    if (item.diameter === 'normal') {
+      item.diameter = '32';
+    }
+    if (item.diameter === 'big') {
+      item.diameter = '45';
+    }
+
+    for (const ingredient of item.ingridients) {
+      switch (ingredient.name) {
+      case 'mushrooms':
+        ingredient.name = 'грибы';
+        break;
+      case 'cheddar':
+        ingredient.name = 'чеддер';
+        break;
+      case 'salami':
+        ingredient.name = 'салями';
+        break;
+      case 'ham':
+        ingredient.name = 'ветчина';
+        break;
+      case 'ananas':
+        ingredient.name = 'ананас';
+        break;
+      case 'bacon':
+        ingredient.name = 'бекон';
+        break;
+      case 'onion':
+        ingredient.name = 'лук';
+        break;
+      case 'chile':
+        ingredient.name = 'чили';
+        break;
+      case 'jalapeno':
+        ingredient.name = 'халапеньо';
+        break;
+      case 'olives':
+        ingredient.name = 'маслины';
+        break;
+      case 'tomatoes':
+        ingredient.name = 'томаты';
+        break;
+      case 'salmon':
+        ingredient.name = 'лосось';
+        break;
+      case 'mozzarella':
+        ingredient.name = 'моцарелла';
+        break;
+      case 'parmesan':
+        ingredient.name = 'пармезан';
+        break;
+      case 'blue_cheese':
+        ingredient.name = 'блю чиз';
+        break;
+      }
+    }
+    const textIng = [];
+    for (const ingredient of item.ingridients) {
+      textIng.push(ingredient.name);
+    }
+
+    item.ingridients = textIng.join(', ');
+  }
+
+  return cloneItems;
+};
+
+export { normalizePizza, normalizeDataCart };
